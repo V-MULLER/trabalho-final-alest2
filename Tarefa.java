@@ -10,6 +10,13 @@ public class Tarefa implements Comparable<Tarefa>{
 		this.tempo = tempo;
 		status = Status.TRANCADO;
 	}
+	
+	public Tarefa(String text) {
+		String fields[] = text.split("_");
+		this.nome = fields[0];
+		this.tempo = Integer.parseInt(fields[1]);
+		status = Status.TRANCADO;
+	}
 
 	public String getNome() {
 		return nome;
