@@ -71,6 +71,28 @@ public class GrafoDeTarefas<TIPO> {
 			tarefas.add(a.getFim());
 		return tarefas;
 	}
+	
+	public void bfs() {
+		List<Vertice<Tarefa>> marcados = new ArrayList<Vertice<Tarefa>>();
+		List<Vertice<Tarefa>> stack = new ArrayList<Vertice<Tarefa>>();
+		Vertice<Tarefa> atual = vertices.get(0);
+		marcados.add(atual);
+		System.out.println("atual " + atual.getTarefa().getNome());
+		stack.add(atual);
+		
+		while(stack.size() > 0) {
+			Vertice<Tarefa> visitado = stack.get(0);
+			for(int i = 0; i < visitado.getArestasSaida().size(); i++) {
+				Vertice<Tarefa> proximo = visitado.getArestasSaida().get(i).getFim();
+				if(!marcados.contains(proximo)) {
+					marcados.add(proximo);
+					System.out.println(proximo.getTarefa().getNome());
+					stack.add(proximo);
+				}
+			}
+			stack.remove(0);
+		}
+	}
 	/*
 	 * public Boolean verificaSeLiberado(Vertice<Tarefa> tarefa) { boolean status =
 	 * false; if(tarefa.getArestasEntrada().isEmpty()) { return true; }

@@ -85,7 +85,7 @@ public class PistaDeTreinamento {
 		//StdOut.println(g);
 		for (Vertice<Tarefa> v : og.ordemTopo())
 			System.out.println(v.getTarefa().getNome());
-
+		//g.bfs();
 		System.out.println();
 		//System.out.println(g.toDot());
 

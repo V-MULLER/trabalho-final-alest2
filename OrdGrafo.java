@@ -21,14 +21,22 @@ public class OrdGrafo {
 	private void dfs(GrafoDeTarefas<Tarefa> g, Vertice<Tarefa> v) {
 		System.out.println("Entrei em " + v.getTarefa().getNome());
 		marked[g.getVertices().indexOf(v)] = true;
-		ordem.push(v);
+		//v.getTarefa().setStatus(Status.LIBERADO);
+		
+		
 		for (Vertice<Tarefa> w : g.adj(v)) {
 			System.out.println("Adjacente: " + w.getTarefa().getNome());
 			if (!marked[g.getVertices().indexOf(w)]) {
+				if(verificaSeLiberado(w)) {
+				w.getTarefa().setStatus(Status.LIBERADO);
 				dfs(g, w);
+				this.addLiberados(w);}
+				
+				
 			}
+				
 		}
-		
+		ordem.push(v);
 		System.out.println("adicionando " + v.getTarefa().getNome());
 		
 	 System.out.println("Terminei " + v.getTarefa().getNome());
@@ -37,6 +45,8 @@ public class OrdGrafo {
 	public Iterable<Vertice<Tarefa>> ordemTopo() {
 		return ordem;
 	}
+	
+	
 	
 	
 	public Boolean verificaSeLiberado(Vertice<Tarefa> tarefa) {
